@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as utilActions from '../actions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Cell, Textfield } from 'react-mdc-web'
+import { Grid, Cell, Textfield } from 'react-mdc-web'
 
 class Unixtime extends Component {
   constructor(props) {
@@ -11,9 +11,11 @@ class Unixtime extends Component {
     this.state = { 'input': '' }
   }
   render() {
+    console.log(this.props.utils)
     return (
       <div>
-        <Cell col={8}>
+        <Grid>
+        <Cell col={6}>
           <Textfield
             floatingLabel="TIme string"
             value={this.state.input}
@@ -23,7 +25,12 @@ class Unixtime extends Component {
             }}
           />
         </Cell>
-
+        </Grid>
+        <Grid>
+        <Cell col={6}>
+          {this.props.utils.unixtimeConverted}
+        </Cell>
+        </Grid>
       </div>
     )
   }

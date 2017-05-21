@@ -2,16 +2,19 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/nyushi/unixtime/parse"
 )
 
 func main() {
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.GET("/unixtime", func(c *gin.Context) {
 		c.String(http.StatusOK, fmt.Sprint(time.Now().Unix()))
 		return
@@ -37,5 +40,5 @@ func main() {
 		c.String(http.StatusBadRequest, "failed to parse input")
 		return
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	log.Fatal(r.Run()) // listen and serve on 0.0.0.0:8080
 }

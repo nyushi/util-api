@@ -5,6 +5,8 @@ const utils = (state = {}, action) => {
       return { showMenu: !state.showMenu }
     case 'UPDATE_UNIXTIME':
       return { unixtimeInput: action.text }
+    case 'CONVERT_UNIXTIME_SUCCEEDED':
+      return {...state, unixtimeConverted: action.value}
     case 'INCREMENT':
       return state
     case 'DECREMENT':
