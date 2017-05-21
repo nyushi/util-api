@@ -13,5 +13,8 @@ module.exports = {
     },
     "rules": {
       "react/jsx-uses-vars": 1
+    },
+    "globals": {
+      "fetch": false
     }
 };

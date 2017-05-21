@@ -6,12 +6,11 @@ import { connect } from 'react-redux'
 import { Grid, Cell, Textfield } from 'react-mdc-web'
 
 class Unixtime extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { 'input': '' }
   }
-  render() {
-    console.log(this.props.utils)
+  render () {
     return (
       <div>
         <Grid>
@@ -23,6 +22,7 @@ class Unixtime extends Component {
               this.props.actions.updateUnixtime(input)
               this.setState({ input })
             }}
+            style = {{width: 400}}
           />
         </Cell>
         </Grid>

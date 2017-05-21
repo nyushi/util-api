@@ -11,15 +11,25 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Unixtime from './Unixtime'
 
-const Home = () => (
-  <div>
-    <h2>!!!</h2>
-  </div>
-)
+class HomeComponent extends Component {
+  componentDidMount () {
+    this.props.actions.toggleMenu()
+  }
+  render () {
+    return (
+      <div>
+        <h2>!!!</h2>
+      </div>)
+  }
+}
 
+HomeComponent.propTypes = {
+  utils: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+}
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Toolbar fixed>
@@ -42,7 +52,6 @@ class App extends Component {
                 </DrawerHeader>
                 <DrawerContent>
                   <Navigation>
-                    <Link onClick={() => { this.props.actions.toggleMenu() }} to="/">Home</Link>
                     <Link onClick={() => { this.props.actions.toggleMenu() }} to="/unixtime">Unix Time Stamp</Link>
                   </Navigation>
                 </DrawerContent>
@@ -56,7 +65,6 @@ class App extends Component {
     )
   }
 }
-
 
 App.propTypes = {
   utils: PropTypes.object.isRequired,
@@ -72,6 +80,11 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators(utilActions, dispatch)
   }
 }
+
+const Home = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeComponent)
 
 export default connect(
   mapStateToProps,
